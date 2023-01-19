@@ -1,4 +1,5 @@
 import Header from './Header';
+import Country from './Country';
 import './App.css';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -22,6 +23,9 @@ const App = () => {
               <option value="">Oceania</option>
             </select>
           </div>
+        </div>
+        <div className="countries">
+          <Country />
         </div>
       </div>
     </div>
