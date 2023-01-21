@@ -52,6 +52,32 @@ const App = () => {
       fetchData();
     }
   };
+
+  const selectRegion = () => {
+    const selectValue = regionRef.current.value;
+    if (selectValue.trim()) {
+      const fetchSelect = async () => {
+        const response = await fetch(`https://restcountries.com/v3.1/region/${selectValue}`);
+        const filteredData = await response.json();
+        if (selectValue === 'Filter by Region') {
+          try {
+            fetchData();
+          } catch (error) {
+            console.log('Fetch error: ', error);
+          }
+          return;
+        };
+        setCountries(filteredData);
+      };
+      try {
+        fetchSelect();
+      } catch (error) {
+        console.log('Fetch error: ', error);
+      }
+    } else {
+      fetchData();
+    }
+  };
   
   return (
     <div className={`app ${darkMode ? 'darkMode' : ''}`}>
@@ -76,13 +102,16 @@ const App = () => {
                   />
                 </div>
                 <div className={`select_region ${darkMode ? 'darkMode' : ''}`}>
-                  <select ref={regionRef} >
-                    <option value=''>Filter by Region</option>
-                    <option value=''>Africa</option>
-                    <option value=''>America</option>
-                    <option value=''>Asia</option>
-                    <option value=''>Europe</option>
-                    <option value=''>Oceania</option>
+                  <select 
+                    ref={regionRef} 
+                    onChange={selectRegion}
+                  >
+                    <option>Filter by Region</option>
+                    <option>Africa</option>
+                    <option>America</option>
+                    <option>Asia</option>
+                    <option>Europe</option>
+                    <option>Oceania</option>
                   </select>
                 </div>
               </div>
@@ -114,6 +143,6 @@ const App = () => {
       </Routes>
     </div>
   )
-}
+};
 
-export default App
+export default App;
