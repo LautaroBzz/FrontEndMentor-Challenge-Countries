@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import Country from './Country';
 import CountryDetails from './CountryDetails';
@@ -8,10 +8,26 @@ import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [countries, setCountries] = useState([]);
 
   const switchMode = () => {
     setDarkMode((prevState) => !prevState)
   };
+
+  const fetchData = async () => {
+    const response = await fetch('https://restcountries.com/v3.1/all');
+    const data = await response.json();
+    setCountries(data);
+  };
+
+  useEffect(() => {
+    try {
+      fetchData()
+    } catch (error) {
+      console.log('Fetch error: ', error)
+    }
+  }, []);
+  
 
   return (
     <div className={`app ${darkMode ? 'darkMode' : ''}`}>
@@ -38,7 +54,17 @@ const App = () => {
                 </div>
               </div>
               <div className='countries'>
-                <Country darkMode={darkMode}/>
+                {countries.map((country) => (
+                  <Country 
+                    darkMode={darkMode}
+                    key={country.cca2}
+                    name={country.name.common}
+                    capital={country.capital}
+                    population={country.population}
+                    region={country.region}
+                    flag={country.flags.svg}
+                  />
+                ))}
               </div>
             </div>
           }

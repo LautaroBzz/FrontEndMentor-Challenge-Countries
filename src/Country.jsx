@@ -1,24 +1,31 @@
 import React from 'react';
 
-const Country = ({ darkMode }) => {
+const Country = ({ 
+  darkMode,
+  name,
+  capital,
+  population,
+  region,
+  flag 
+}) => {
   return (
     <div className={`country ${darkMode ? 'darkMode' : ''}`}>
       <div className="flag_container">
-        <img src="https://flagcdn.com/w320/gd.png" alt="flag" />
+        <img src={flag} alt="flag" />
       </div>
       <div className="details">
-        <h3 className="name">Name</h3>
+        <h3 className="name">{name}</h3>
         <p>
-          Population:{''}
-          <span className={`values ${darkMode ? 'darkMode' : ''}`}>Test</span>
+          Population:{' '}
+          <span className={`values ${darkMode ? 'darkMode' : ''}`}>{new Intl.NumberFormat().format(population)}</span>
         </p>
         <p>
-          Region:{''}
-          <span className={`values ${darkMode ? 'darkMode' : ''}`}>Test</span>
+          Region:{' '}
+          <span className={`values ${darkMode ? 'darkMode' : ''}`}>{region}</span>
         </p>
         <p>
-          Capital:{''}
-          <span className={`values ${darkMode ? 'darkMode' : ''}`}>Test</span>
+          Capital:{' '}
+          <span className={`values ${darkMode ? 'darkMode' : ''}`}>{capital}</span>
         </p>
       </div>
     </div>
