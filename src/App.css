@@ -68,13 +68,6 @@
   gap: 5px;
 }
 
-.search_input input {
-  border: 0;
-  background-color: transparent;
-  outline: none;
-  font-size: 18px;
-}
-
 .search_input.darkMode {
   background-color: var(--dark-mode-elements);
   color: white;
@@ -82,6 +75,13 @@
 
 .search_input.darkMode input {
   color: white;
+}
+
+.search_input input {
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  font-size: 18px;
 }
 
 .select_region {

@@ -1,10 +1,10 @@
 import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const CountryDetails = () => {
+const CountryDetails = ({ darkMode }) => {
   return (
     <div className="country_details">
-      <button className="back">
+      <button className={`back ${darkMode ? 'darkMode' : ''}`}>
         <ArrowBackIcon />
         <p>Go Back</p>
       </button>
@@ -19,50 +19,50 @@ const CountryDetails = () => {
             <div className="left_info">
               <p>
                 Native Name:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
               <p>
                 Population:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
               <p>
                 Region:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
               <p>
                 Sub region:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
             </div>
 
             <div className="right_info">
             <p>
                 Capital:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
               <p>
                 Top-level Domain:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
               <p>
                 Currencies:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
               <p>
                 Languages:{' '}
-                <span className='values'>asdasfafs</span>
+                <span className={`values ${darkMode ? 'darkMode' : ''}`}>asdasfafs</span>
               </p>
             </div>
           </div>
 
           Border Countries:
-          <div className="border_country">
+          <div className={`border_country ${darkMode ? 'darkMode' : ''}`}>
             <p>Test</p>
           </div>
-          <div className="border_country">
+          <div className={`border_country ${darkMode ? 'darkMode' : ''}`}>
             <p>Test</p>
           </div>
-          <div className="border_country">
+          <div className={`border_country ${darkMode ? 'darkMode' : ''}`}>
             <p>Test</p>
           </div>
         </div>
