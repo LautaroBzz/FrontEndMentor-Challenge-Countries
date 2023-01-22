@@ -6,10 +6,12 @@ const Country = ({
   capital,
   population,
   region,
-  flag 
+  flag,
+  code,
+  showDetails
 }) => {
   return (
-    <div className={`country ${darkMode ? 'darkMode' : ''}`}>
+    <div className={`country ${darkMode ? 'darkMode' : ''}`} onClick={() => showDetails(code)}>
       <div className="flag_container">
         <img src={flag} alt="flag" />
       </div>

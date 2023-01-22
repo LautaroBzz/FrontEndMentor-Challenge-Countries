@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Country from './Country';
 import CountryDetails from './CountryDetails';
@@ -11,6 +12,7 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const countriesInputRef = useRef();
   const regionRef = useRef();
+  const navigate = useNavigate();
   const noCountriesFound = countries.status || countries.message;
 
   const switchMode = () => {
@@ -78,6 +80,10 @@ const App = () => {
       fetchData();
     }
   };
+
+  const showDetails = (code) => {
+    navigate(`${code}`)
+  };
   
   return (
     <div className={`app ${darkMode ? 'darkMode' : ''}`}>
@@ -89,6 +95,7 @@ const App = () => {
       <Routes>
         <Route
           path='/'
+          exact
           element={
             <div className='app_body'>
               <div className='inputs'>
@@ -121,11 +128,13 @@ const App = () => {
                     <Country 
                       darkMode={darkMode}
                       key={country.cca2}
+                      code={country.cca2}
                       name={country.name.common}
                       capital={country.capital}
                       population={country.population}
                       region={country.region}
                       flag={country.flags.svg}
+                      showDetails={showDetails}
                     />
                   )))
                 : (
@@ -137,8 +146,17 @@ const App = () => {
         />
 
         <Route 
-          path='country-details' 
-          element={<CountryDetails darkMode={darkMode} />}
+          path=':countryCode' 
+          exact
+          element={<CountryDetails darkMode={darkMode} countries={countries} />}
+        />
+        <Route 
+          path='*' 
+          element={
+            <div className='countries'>
+              <p>Nothing to see over here...</p>
+            </div>
+          }
         />
       </Routes>
     </div>
